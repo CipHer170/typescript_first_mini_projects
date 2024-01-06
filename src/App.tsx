@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Product } from "./components/product";
+// import { productData } from "./components/productsData";
+import "././components/style.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { IProduct } from "./models";
 
 function App() {
+  const [productData, setProductData] = useState<IProduct[]>([]);
+  async function getData() {
+    const response = await axios.get<IProduct[]>(
+      "https://fakestoreapi.com/products?limit=5"
+    );
+    setProductData(response.data);
+    console.log(response);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mx-auto max-w-2xl pt-5">
+      {productData.map((item, index) => (
+        <Product tranferringData={item} key={index} />
+      ))}
     </div>
   );
 }
