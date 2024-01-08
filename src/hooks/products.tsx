@@ -4,9 +4,12 @@ import { IProduct } from "../models";
 
 export function useProductsData() {
   const [productData, setProductData] = useState<IProduct[]>([]);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const addProduct = (product: IProduct) => {
+    setProductData((prev) => [...prev, product]);
+  };
 
   async function getData() {
     try {
@@ -28,5 +31,5 @@ export function useProductsData() {
     getData();
   }, []);
 
-  return { productData, loading, error };
+  return { productData, loading, error, addProduct };
 }

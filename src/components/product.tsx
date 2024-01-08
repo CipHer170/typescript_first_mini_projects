@@ -8,6 +8,8 @@ interface ProductProps {
 export function Product(props: ProductProps) {
   // для удобства вместо props: ProductProps можно написать {tranferringData}:ProductProps, и в коде удалить все props..., просто оставив tranferringData.title
 
+
+  
   const [show, setShow] = useState(false);
 
   return (
