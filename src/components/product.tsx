@@ -11,8 +11,12 @@ export function Product(props: ProductProps) {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="product">
-      <img src={props.tranferringData.image} alt="icon" />
+    <div className="product  w-[500px] h-[500px] border-2">
+      <img
+        src={props.tranferringData.image}
+        alt="icon"
+        className="w-[250px] h-[250px] items-center"
+      />
       <p>{props.tranferringData.title}</p>
       <p className="font-bold">{props.tranferringData.price}</p>
       {show && <p>{props.tranferringData.description}</p>}
@@ -22,4 +26,3 @@ export function Product(props: ProductProps) {
     </div>
   );
 }
-// 55:42
